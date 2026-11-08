@@ -115,13 +115,8 @@ jobs:
           fi
 
           meson setup build work/mesa \
-              --cross-file android-cross.txt \
               -Dbuildtype=release \
-              -Dplatforms=$PLATFORMS \
-              -Dandroid-stub=true \
-              -Dandroid-strict=false \
-              -Dandroid-libbacktrace=disabled \
-              -Dplatform-sdk-version=30 \
+              -Dplatforms=x11,wayland \
               -Dglx=disabled \
               -Dgbm=disabled \
               -Degl=disabled \
@@ -137,7 +132,7 @@ jobs:
               -Dprecomp-compiler=system \
               -Dvulkan-drivers=panfrost \
               -Dllvm=disabled \
-              -Dpanfrost-kmds=kbase
+              -Dpanfrost-kmds=panthor
 
       - name: Compile PanVK Driver
         run: |
